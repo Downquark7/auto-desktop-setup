@@ -1,0 +1,8 @@
+#!/bin/sh
+
+urxvtc $@ --depth 32 -bg rgba:0000/0000/0000/5555
+if [ $? -eq 2 ]; then
+  urxvtd -q -o -f
+  urxvtc $@ --depth 32 -bg rgba:0000/0000/0000/5555
+fi
+
