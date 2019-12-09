@@ -3,7 +3,7 @@
 sudo cp terminal /usr/bin/terminal
 sudo cp i3status.conf /etc/i3status.conf
 sudo cp sddm.conf /etc/sddm.conf
-sudo pacman -S sddm scrot dolphin pcmanfm xorg-server xorg-xbacklight xorg-xinit xorg-xmodmap firefox git i3-gaps networkmanager_dmenu network-manager-applet networkmanager mesa x86-video-intel morc-menu openssh base-devel pavucontrol pulseaudio pulseaudio-alsa alsa-utils alsa-firmware kdeconnect lolcat sl go lxappearance nano htop dunst bluez bluez-utils blueman
+sudo pacman -S sddm scrot dolphin pcmanfm xorg-server xorg-xbacklight xorg-xinit xorg-xmodmap firefox git i3-gaps networkmanager_dmenu network-manager-applet networkmanager mesa x86-video-intel morc-menu openssh base-devel pavucontrol pulseaudio pulseaudio-alsa alsa-utils alsa-firmware kdeconnect lolcat sl go lxappearance nano htop dunst bluez bluez-utils blueman gtk2 gtk3
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
@@ -16,3 +16,4 @@ cp .Xmodmap ~/.Xmodmap
 cp vncDisplay.sh ~/vncDisplay.sh
 cp config ~/.config/i3/config
 cp compton.conf ~/.config/compton.conf
+cp settings.ini ~/.config/gtk-3.0/settings.ini
