@@ -25,4 +25,4 @@ mkdir $HOMEDIR/.config/gtk-3.0/
 cp settings.ini $HOMEDIR/.config/gtk-3.0/settings.ini
 cp .xinitrc $HOMEDIR/.xinitrc
 cp .zshrc $HOMEDIR/.zshrc
-sudo -u enicely chsh -s /usr/bin/zs
+sudo -u enicely chsh -s /usr/bin/zsh
