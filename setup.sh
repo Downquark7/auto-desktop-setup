@@ -27,4 +27,6 @@ mkdir -p $HOMEDIR/.config/gtk-3.0/
 cp settings.ini $HOMEDIR/.config/gtk-3.0/settings.ini
 cp .xinitrc $HOMEDIR/.xinitrc
 cp .zshrc $HOMEDIR/.zshrc
+mkdir -p /etc/X11/xorg.conf.d/
+cp 30-touchpad.conf /etc/X11/xorg.conf.d/
 sudo -u enicely chsh -s /usr/bin/zsh
