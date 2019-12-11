@@ -1,6 +1,6 @@
-exec --no-startup-id xrandr --output eDP1 --mode 1920x1080
-#exec /urs/bin/compton --config /home/enicely/.compton.conf~.i3/config
-exec --no-startup-id xset b off
+exec --no-startup-id /home/enicely/autoHdmi.sh; sleep 1; nitrogen --restore; sleep 1; compton -b
+#exec /usr/bin/compton --config /home/enicely/.compton.conf~.i3/config
+#exec --no-startup-id xset b off
 
 # i3 config file (v4)
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
@@ -12,7 +12,7 @@ set $mod Mod4
 # workspace_layout tabbed <stacking|tabbed>
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-default_border pixel 1
+default_border none
 default_floating_border normal
 
 # Hide borders
@@ -37,7 +37,7 @@ bindsym $mod+Return exec terminal
 bindsym $mod+Shift+q kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id dmenu
+bindsym $mod+d exec --no-startup-id dmenu_run
 
 # launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu
@@ -61,19 +61,18 @@ bindsym XF86MonBrightnessDown exec "xbacklight -dec 2; notify-send 'brightness d
 # Start Applications
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
 bindsym $mod+F2 exec firefox
-bindsym $mod+XF86MonBrightnessDown exec firefox
-bindsym $mod+F3 exec dolphin
-bindsym $mod+XF86MonBrightnessUp exec dolphin
+#bindsym $mod+XF86MonBrightnessDown exec firefox
+bindsym $mod+F3 exec pcmanfm
+#bindsym $mod+XF86MonBrightnessUp exec dolphin
 # bindsym $mod+F3 exec ranger
 bindsym $mod+Shift+F3 exec pcmanfm_pkexec
-bindsym $mod+x exec firefox "https://prisma:1880/dashboard"
 bindsym $mod+F5 exec terminal -e 'mocp'
 bindsym $mod+t exec --no-startup-id pkill compton
 bindsym $mod+Ctrl+t exec --no-startup-id compton -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
-bindsym Print exec --no-startup-id i3-scrot
-bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
-bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
+#bindsym Print exec --no-startup-id i3-scrot
+#bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
+#bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
 #bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
@@ -143,6 +142,13 @@ bindsym $mod+minus scratchpad show
 #navigate workspaces next / previous
 bindsym $mod+Ctrl+Right workspace next
 bindsym $mod+Ctrl+Left workspace prev
+#bindsym $mod+Shift+Right move right
+#bindsym $mod+Shift+Left move left
+
+#bindsym $mod+Ctrl+l workspace next
+#bindsym $mod+Ctrl+h workspace prev
+#bindsym $mod+Shift+l move right
+#bindsym $mod+Shift+h move left
 
 # Workspace names
 # to display names or symbols instead of plain workspace numbers you can use
@@ -279,21 +285,20 @@ mode "resize" {
 bindsym $mod+9 exec --no-startup-id blurlock
 
 # Autostart applications
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id nitrogen --restore; sleep 1; compton -b
+#exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 #exec --no-startup-id manjaro-hello
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
-exec --no-startup-id pamac-tray
-exec --no-startup-id clipit
-exec --no-startup-id blueman-applet
+#exec --no-startup-id pamac-tray
+#exec --no-startup-id clipit
+#exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
 #exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
 exec --no-startup-id xautolock -time 10 -locker blurlock
-exec_always --no-startup-id ff-theme-util
-exec_always --no-startup-id fix_xcursor
-
+#exec_always --no-startup-id ff-theme-util
+#exec_always --no-startup-id fix_xcursor
+#exec --no-startup-id jetbrains-toolbox --minimize
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
 # https://i3wm.org/docs/userguide.html#xresources
@@ -429,4 +434,21 @@ mode "$mode_gaps_outer" {
 }
 
 exec --no-startup-id /usr/bin/kdeconnect-indicator
-exec --no-startup-id xmodmap ~/.Xmodmap
+exec --no-startup-id xmodmap /home/enicely/.Xmodmap
+
+set $mode_firefox Firefox shortcuts: (x) prisma, (a) apple music, (c) canvas, (p) access plus, (d) desmos, (s) symbolab, (g) gmail, (f) gmail/home, (t) torn
+
+bindsym $mod+x mode "$mode_firefox"
+mode "$mode_firefox" {
+bindsym x exec --no-startup-id firefox "https://prisma:1880/dashboard"; mode "default"
+bindsym c exec --no-startup-id firefox "https://canvas.iastate.edu"; mode "default"
+bindsym p exec --no-startup-id firefox "https://accessplus.iastate.edu"; mode "default"
+bindsym a exec --no-startup-id firefox "https://beta.music.apple.com"; mode "default"
+bindsym d exec --no-startup-id firefox "https://www.desmos.com/calculator"; mode "default"
+bindsym s exec --no-startup-id firefox "https://www.symbolab.com"; mode "default"
+bindsym g exec --no-startup-id firefox "https://mail.google.com/mail/u/1/"; mode "default"
+bindsym f exec --no-startup-id firefox "https://mail.google.com/mail/u/0/"; mode "default"
+bindsym t exec --no-startup-id firefox "https://www.torn.com/"; mode "default"
+bindsym Return mode "default"
+bindsym Escape mode "default"
+}
