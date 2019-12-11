@@ -2,6 +2,7 @@
 set -e
 useradd -m enicely
 usermod -aG wheel enicely
+passwd enicely
 HOMEDIR=/home/enicely
 cp terminal /usr/bin/terminal
 cp i3status.conf /etc/i3status.conf
@@ -12,16 +13,16 @@ cd yay
 makepkg -si
 cd ..
 #install compton-tryone-git [aur] if animations suck
-yay -S gtop compton-tryone-blackcapcoder-git ocs-url sddm-theme-sugar-candy-git candy-icons-git oh-my-zsh-git
+yay -S gtop compton-tryone-blackcapcoder-git ocs-url sddm-theme-sugar-candy-git candy-icons-git oh-my-zsh-git pavucontrol
+mkdir -p /usr/share/sddm/themes/Sugar-Candy/Backgrounds/
 cp theme.conf /usr/share/sddm/themes/Sugar-Candy/
 cp cat-rain.jpg /usr/share/sddm/themes/Sugar-Candy/Backgrounds/
 cp .Xmodmap $HOMEDIR/.Xmodmap
 cp vncDisplay.sh $HOMEDIR/vncDisplay.sh
-mkdir $HOMEDIR/.config/
-mkdir $HOMEDIR/.config/i3/
+mkdir -p $HOMEDIR/.config/i3/
 cp config $HOMEDIR/.config/i3/config
 cp compton.conf $HOMEDIR/.config/compton.conf
-mkdir $HOMEDIR/.config/gtk-3.0/
+mkdir -p $HOMEDIR/.config/gtk-3.0/
 cp settings.ini $HOMEDIR/.config/gtk-3.0/settings.ini
 cp .xinitrc $HOMEDIR/.xinitrc
 cp .zshrc $HOMEDIR/.zshrc
